@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://blackraydev.github.io/sitemap.xml
