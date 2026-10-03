@@ -1,14 +1,21 @@
 'use strict';
 const menuButton = document.querySelector('.menu-toggle');
 const mobileNav = document.querySelector('.mobile-nav');
-function closeMenu() { mobileNav.hidden = true; menuButton.setAttribute('aria-expanded', 'false'); menuButton.textContent = 'Меню'; }
+function syncPageLock() { document.body.style.overflow = mobileNav.open || quoteDialog.open ? 'hidden' : ''; }
+function closeMenu() {
+  if (mobileNav.open) mobileNav.close();
+  menuButton.setAttribute('aria-expanded', 'false');
+  syncPageLock();
+}
 menuButton.addEventListener('click', () => {
-  mobileNav.hidden = !mobileNav.hidden;
-  menuButton.setAttribute('aria-expanded', String(!mobileNav.hidden));
-  menuButton.textContent = mobileNav.hidden ? 'Меню' : 'Закрыть';
+  mobileNav.showModal();
+  menuButton.setAttribute('aria-expanded', 'true');
+  syncPageLock();
 });
+document.querySelector('.menu-close').addEventListener('click', closeMenu);
+mobileNav.addEventListener('close', closeMenu);
 mobileNav.addEventListener('click', (event) => { if (event.target.closest('a')) closeMenu(); });
-document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeMenu(); });
+matchMedia('(max-width: 1180px)').addEventListener('change', (event) => { if (!event.matches) closeMenu(); });
 const originInput = document.querySelector('#origin');
 const destinationInput = document.querySelector('#destination');
 const quoteDialog = document.querySelector('#quote-dialog');
@@ -33,16 +40,20 @@ function openQuote(service) {
   if (sending) return;
   if (!resultPanel.hidden) { detailsForm.reset(); requestId = crypto.randomUUID(); }
   const error = document.querySelector('#route-error'); error.hidden = true;
-  if (sameCities(originInput.value, destinationInput.value)) {
-    error.textContent = 'Укажите разные города отправления и получения.';
-    error.hidden = false; destinationInput.focus(); return;
-  }
   dialogOrigin.value = originInput.value.trim(); dialogDestination.value = destinationInput.value.trim();
   if (service) serviceSelect.value = service;
   resetResult(); document.querySelector('#details-error').hidden = true;
-  closeMenu(); quoteDialog.showModal(); document.body.style.overflow = 'hidden';
+  closeMenu(); quoteDialog.showModal(); syncPageLock();
 }
-document.querySelector('#route-form').addEventListener('submit', (event) => { event.preventDefault(); openQuote(); });
+document.querySelector('#route-form').addEventListener('submit', (event) => {
+  event.preventDefault();
+  if (sameCities(originInput.value, destinationInput.value)) {
+    const error = document.querySelector('#route-error');
+    error.textContent = 'Укажите разные города отправления и получения.';
+    error.hidden = false; destinationInput.focus(); return;
+  }
+  openQuote();
+});
 document.querySelectorAll('[data-service]').forEach((button) => button.addEventListener('click', () => openQuote(button.dataset.service)));
 document.querySelectorAll('[data-open-quote]').forEach((button) => button.addEventListener('click', () => openQuote()));
 document.querySelectorAll('.direction-choice').forEach((button) => button.addEventListener('click', () => {
@@ -50,7 +61,7 @@ document.querySelectorAll('.direction-choice').forEach((button) => button.addEve
   openQuote();
 }));
 document.querySelector('.dialog-close').addEventListener('click', () => quoteDialog.close());
-quoteDialog.addEventListener('close', () => { document.body.style.overflow = ''; });
+quoteDialog.addEventListener('close', syncPageLock);
 quoteDialog.addEventListener('click', (event) => {
   if (event.target !== quoteDialog) return;
   const bounds = quoteDialog.getBoundingClientRect();

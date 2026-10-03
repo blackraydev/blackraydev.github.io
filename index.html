@@ -25,15 +25,23 @@
     <div class="header-inner">
       <a href="#" class="brand" aria-label="Аэроплат, на главную"><span class="brand-crop"><img src="assets/logo-blue.svg" alt="Аэроплат. Логистические решения" width="320" height="179"></span></a>
       <nav class="desktop-nav" aria-label="Главная навигация"><a href="#services">Перевозки</a><a href="#directions">Направления</a><a href="#questions">Вопросы</a></nav>
-      <div class="header-actions"><div class="header-contact"><a class="header-phone" href="tel:+79991234567">+7 (999) 123-45-67</a><a class="header-email" href="mailto:test@mail.ru">test@mail.ru</a></div><a class="button button-small" href="#calculation">Рассчитать перевозку</a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">Меню</button></div>
+      <div class="header-actions"><div class="header-contact"><a class="header-phone" href="tel:+79991234567">+7 (999) 123-45-67</a><a class="header-email" href="mailto:test@mail.ru">test@mail.ru</a></div><button class="button button-small" type="button" data-open-quote>Рассчитать перевозку</button><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-haspopup="dialog">Меню</button></div>
     </div>
-    <nav id="mobile-nav" class="mobile-nav" aria-label="Мобильная навигация" hidden><a href="#services">Перевозки</a><a href="#directions">Направления</a><a href="#questions">Вопросы</a><a href="#contacts">Контакты</a><a href="tel:+79991234567">+7 (999) 123-45-67</a><a href="mailto:test@mail.ru">test@mail.ru</a><a href="#calculation">Рассчитать перевозку</a></nav>
   </header>
+  <dialog id="mobile-nav" class="mobile-nav" aria-labelledby="menu-heading">
+    <div class="mobile-menu-top"><a href="#" class="brand" aria-label="Аэроплат, на главную"><span class="brand-crop"><img src="assets/logo-blue.svg" alt="Аэроплат. Логистические решения" width="320" height="179"></span></a><button class="menu-close" type="button" aria-label="Закрыть меню" autofocus>Закрыть <span aria-hidden="true">×</span></button></div>
+    <h2 id="menu-heading" class="visually-hidden">Меню сайта</h2>
+    <div class="mobile-menu-body">
+      <nav class="mobile-menu-links" aria-label="Мобильная навигация"><a href="#services"><span aria-hidden="true">01</span>Перевозки</a><a href="#directions"><span aria-hidden="true">02</span>Направления</a><a href="#questions"><span aria-hidden="true">03</span>Вопросы</a><a href="#contacts"><span aria-hidden="true">04</span>Контакты</a></nav>
+      <div class="mobile-menu-contact"><p>На связи с вашим бизнесом</p><a class="mobile-menu-phone" href="tel:+79991234567">+7 (999) 123-45-67</a><a class="mobile-menu-email" href="mailto:test@mail.ru">test@mail.ru</a><button class="button" type="button" data-open-quote>Рассчитать перевозку</button></div>
+    </div>
+    <div class="mobile-menu-bottom"><span>Автомобильная логистика</span><span>По России</span></div>
+  </dialog>
   <main id="main">
     <section class="hero" aria-labelledby="hero-heading">
       <img class="hero-image" src="assets/hero.webp" alt="Синий грузовик AeroPlat на загородной трассе" width="1672" height="941" fetchpriority="high">
       <div class="hero-shade"></div>
-      <div class="hero-content"><p class="eyebrow">Автомобильная логистика по России</p><h1 id="hero-heading">Ваш груз.<br><span>Наш маршрут.</span></h1><p class="hero-description">От первой загрузки до последнего километра.<br>Перевозки, на которые можно положиться.</p><a class="button hero-button" href="#calculation">Рассчитать перевозку</a></div>
+      <div class="hero-content"><p class="eyebrow">Автомобильная логистика по России</p><h1 id="hero-heading">Ваш груз.<br><span>Наш маршрут.</span></h1><p class="hero-description">От первой загрузки до последнего километра.<br>Перевозки, на которые можно положиться.</p><button class="button hero-button" type="button" data-open-quote>Рассчитать перевозку</button></div>
     </section>
     <section id="calculation" class="quick-quote container" aria-labelledby="quote-heading">
       <div class="quote-intro"><h2 id="quote-heading">Куда отправим <br>ваш груз?</h2><p>Маршрут можно уточнить позже.</p></div>
@@ -58,7 +66,7 @@
     <section id="directions" class="directions-section section" aria-labelledby="directions-heading">
       <div class="container"><div class="directions-layout"><div class="directions-left"><div class="directions-top"><p class="eyebrow">География перевозок</p><h2 id="directions-heading">Соединяем города.<br>Двигаем ваш бизнес.</h2><p class="section-description">От соседнего региона до другого края страны. Выберите направление или укажите свой маршрут.</p></div>
         <div class="route-diagram" role="img" aria-label="Схема автомобильных направлений: Санкт-Петербург, Москва, Казань, Екатеринбург, Новосибирск, Владивосток. Это схема, не карта покрытия.">
-          <svg class="route-map" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"><path d="M140 200 C140 290 280 370 380 400 C250 520 190 600 140 600"/><path d="M140 600 C230 500 350 480 380 400 C490 350 590 330 700 360 C780 400 810 610 890 720"/><path d="M140 600 C240 780 410 920 460 720 C550 580 590 540 700 360"/></svg>
+          <svg class="route-map" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"><path d="M140 200 C140 290 280 370 380 400"/><path d="M140 600 C230 500 350 480 380 400 C490 350 590 330 700 360 C780 400 810 610 890 720"/><path d="M140 600 C240 780 410 920 460 720 C550 580 590 540 700 360"/></svg>
           <span class="city-node city-petersburg">Санкт-Петербург</span><span class="city-node city-moscow">Москва</span><span class="city-node city-kazan">Казань</span><span class="city-node city-ekaterinburg">Екатеринбург</span><span class="city-node city-novosibirsk">Новосибирск</span><span class="city-node city-vladivostok">Владивосток</span>
           </div>
         <p class="diagram-label">Ваш маршрут может быть любым</p>
