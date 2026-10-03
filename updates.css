@@ -26,10 +26,10 @@
 .footer-bottom>p:nth-child(2){text-align:center}
 .footer-credit{display:flex;gap:13px;align-items:center;white-space:nowrap}
 .footer-credit>small{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.studio-credit{display:inline-flex;align-items:center;gap:10px;padding:6px 11px 6px 6px;background:#000;color:#fff;border-radius:11px;transition:transform .2s}
+.studio-credit{display:inline-flex;align-items:center;gap:10px;padding:6px 11px 6px 6px;background:#fff;color:#000;border-radius:11px;box-shadow:0 0 0 1px rgb(17 35 58 / 8%);transition:transform .2s}
 .studio-credit:hover{transform:translateY(-2px)}
 .studio-credit-mark{position:relative;display:block;width:34px;height:34px;overflow:hidden;flex:none}
-.studio-credit-mark img{position:absolute;top:0;left:0;width:250px;height:250px;max-width:none;transform:scale(.136);transform-origin:0 0}
+.studio-credit-mark img{position:absolute;top:0;left:0;width:250px;height:250px;max-width:none;transform:scale(.136);transform-origin:0 0;filter:invert(1)}
 .studio-credit-name{display:inline-flex;gap:4px;align-items:baseline;font-family:'Space Grotesk',Manrope,sans-serif}
 .studio-credit-name strong{font-size:26px;line-height:1.1;letter-spacing:-.04em;font-weight:700}
 .studio-credit-name>span{font-size:12px;font-weight:700;color:#777970}
